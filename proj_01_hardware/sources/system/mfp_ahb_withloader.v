@@ -26,7 +26,11 @@ module mfp_ahb_withloader (
     input         UART_RX,
 
 	// reset system due to serial load
-    output        MFP_Reset_serialload
+    output        MFP_Reset_serialload,
+    
+  // 7-segment display
+    output [7:0]  DISPENOUT,
+    output [7:0]  DISPOUT
 );
 
     wire [7:0] char_data;
@@ -122,7 +126,10 @@ module mfp_ahb_withloader (
                                              
         .IO_Switch        ( IO_Switch       ),
         .IO_PB            ( IO_PB           ),
-        .IO_LED           ( IO_LED          )
+        .IO_LED           ( IO_LED          ),
+        
+        .DISPENOUT        ( DISPENOUT       ),
+        .DISPOUT          ( DISPOUT         )
     );
 
 endmodule

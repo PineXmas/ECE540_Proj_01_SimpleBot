@@ -49,3 +49,14 @@
 `define HSIZE_1        3'b000
 `define HSIZE_2        3'b001
 `define HSIZE_4        3'b010
+
+//---------------------------------------------------
+// Constants for Project 01
+//---------------------------------------------------
+
+// Total number of peripheral connected to the AHB-Lite Bus
+`define N_BUS_DEVICES 4
+
+// 7-Seg Address
+`define H_7_SEG_ADDR        (32'h1F700000)
+`define H_7_SEG_ADDR_Match  (24'h1F7000)

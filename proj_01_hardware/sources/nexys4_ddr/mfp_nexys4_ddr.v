@@ -21,7 +21,12 @@ module mfp_nexys4_ddr(
                         input  [`MFP_N_SW-1 :0] SW,
                         output [`MFP_N_LED-1:0] LED,
                         inout  [ 8          :1] JB,
-                        input                   UART_TXD_IN);
+                        input                   UART_TXD_IN,
+                        
+                        // 7-segment display
+                        output [7:0]            AN,
+                        output                  DP, CA, CB, CC, CD, CE, CF, CG
+                        );
 
   // Press btnCpuReset to reset the processor. 
         
@@ -50,6 +55,10 @@ module mfp_nexys4_ddr(
                     .IO_Switch(SW),
                     .IO_PB({BTNU, BTND, BTNL, BTNC, BTNR}),
                     .IO_LED(LED),
-                    .UART_RX(UART_TXD_IN));
+                    .UART_RX(UART_TXD_IN),
+                    
+                    .DISPENOUT(AN),
+                    .DISPOUT({DP, CA, CB, CC, CD, CE, CF, CG})
+                    );
           
 endmodule

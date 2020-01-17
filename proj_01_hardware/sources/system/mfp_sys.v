@@ -25,7 +25,12 @@ module mfp_sys(
                     input  [`MFP_N_SW-1 :0] IO_Switch,
                     input  [`MFP_N_PB-1 :0] IO_PB,
                     output [`MFP_N_LED-1:0] IO_LED,
-                    input                   UART_RX);
+                    input                   UART_RX,
+                    
+                    // 7-segment display
+                    output [7:0]            DISPENOUT,
+                    output [7:0]            DISPOUT
+                    );
 
 
 
@@ -302,7 +307,10 @@ module mfp_sys(
         .IO_PB                  (   IO_PB                   ),
         .IO_LED                 (   IO_LED                  ),
         .UART_RX                (   UART_RX                 ), 
-        .MFP_Reset_serialload   (   MFP_Reset_serialload    )
+        .MFP_Reset_serialload   (   MFP_Reset_serialload    ),
+        
+        .DISPENOUT              (   DISPENOUT               ),
+        .DISPOUT                (   DISPOUT                 )
     );
 
 

@@ -14,8 +14,9 @@ module mfp_ahb_sevensegtimer(
                      input     [ 7:0] EN,
                      input     [63:0] DIGITS,
                      input     [ 7:0] dp,
-                     output    [ 7:0] DISPENOUT,
-                     output    [ 7:0] DISPOUT);
+                     output    [ 7:0] DISPENOUT,    // map to AN signals on the board
+                     output    [ 7:0] DISPOUT       // map to SEGMENTS (Cathodes) signals on the board, in this order: DP CA CB CC CD CE CF CG
+                     );
 
   wire [15:0] cnt16;
   wire [ 2:0] cntSel;

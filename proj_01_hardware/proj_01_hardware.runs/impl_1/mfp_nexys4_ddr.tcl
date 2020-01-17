@@ -67,17 +67,17 @@ set rc [catch {
   create_msg_db init_design.pb
   set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7a100tcsg324-1
-  set_property board_part digilentinc.com:nexys-a7-100t:part0:1.0 [current_project]
+  set_property board_part digilentinc.com:nexys4_ddr:part0:1.1 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir D:/Projects/Code/ECE540_Proj_01_SimpleBot/proj_01_hardware/proj_01_hardware.cache/wt [current_project]
-  set_property parent.project_path D:/Projects/Code/ECE540_Proj_01_SimpleBot/proj_01_hardware/proj_01_hardware.xpr [current_project]
-  set_property ip_output_repo D:/Projects/Code/ECE540_Proj_01_SimpleBot/proj_01_hardware/proj_01_hardware.cache/ip [current_project]
+  set_property webtalk.parent_dir N:/Projects/ECE540_Proj_01/proj_01_hardware/proj_01_hardware.cache/wt [current_project]
+  set_property parent.project_path N:/Projects/ECE540_Proj_01/proj_01_hardware/proj_01_hardware.xpr [current_project]
+  set_property ip_output_repo N:/Projects/ECE540_Proj_01/proj_01_hardware/proj_01_hardware.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES XPM_CDC [current_project]
-  add_files -quiet D:/Projects/Code/ECE540_Proj_01_SimpleBot/proj_01_hardware/proj_01_hardware.runs/synth_1/mfp_nexys4_ddr.dcp
-  read_ip -quiet d:/Projects/Code/ECE540_Proj_01_SimpleBot/proj_01_hardware/proj_01_hardware.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
-  read_xdc D:/Projects/Code/ECE540_Proj_01_SimpleBot/proj_01_hardware/proj_01_hardware.srcs/constrs_1/imports/constraints/mfp_nexys4_ddr.xdc
+  add_files -quiet N:/Projects/ECE540_Proj_01/proj_01_hardware/proj_01_hardware.runs/synth_1/mfp_nexys4_ddr.dcp
+  read_ip -quiet N:/Projects/ECE540_Proj_01/proj_01_hardware/proj_01_hardware.srcs/sources_1/ip/clk_wiz_0/clk_wiz_0.xci
+  read_xdc N:/Projects/ECE540_Proj_01/proj_01_hardware/proj_01_hardware.srcs/constrs_1/imports/constraints/mfp_nexys4_ddr.xdc
   link_design -top mfp_nexys4_ddr -part xc7a100tcsg324-1
   close_msg_db -file init_design.pb
 } RESULT]
