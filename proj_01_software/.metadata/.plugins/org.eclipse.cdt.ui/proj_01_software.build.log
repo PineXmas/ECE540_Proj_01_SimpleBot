@@ -1,0 +1,11 @@
+14:31:08 **** Clean-only build of configuration Default for project proj_01_software ****
+make clean 
+rm -f *.o
+rm -f program.elf
+rm -f program.map
+rm -f program.dis
+rm -f program.rec
+rm -f *.txt
+
+14:31:09 Build Finished (took 874ms)
+
