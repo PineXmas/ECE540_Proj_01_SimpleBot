@@ -33,12 +33,29 @@ module mfp_nexys4_ddr(
   wire clk_out; 
   wire tck_in, tck;
   
+  // Debounced button & switch signals
+  wire [5:0]            debounced_PB;
+  wire [`MFP_N_SW-1 :0] debounced_SW;
+  
+  // --------------------------------------------------
+  // INSTANCES
+  // --------------------------------------------------
+  
   clk_wiz_0 clk_wiz_0(.clk_in1(CLK100MHZ), .clk_out1(clk_out));
   IBUF IBUF1(.O(tck_in),.I(JB[4]));
   BUFG BUFG1(.O(tck), .I(tck_in));
+  
+  // debouncer
+  debounce debouncer(
+    .clk(clk_out),  
+    .pbtn_in({CPU_RESETN, BTNU, BTND, BTNL, BTNC, BTNR}),
+    .switch_in(SW),
+    .pbtn_db(debounced_PB),  
+    .swtch_db(debounced_SW)
+  );
 
   mfp_sys mfp_sys(
-			        .SI_Reset_N(CPU_RESETN),
+			        .SI_Reset_N(debounced_PB[5]),
                     .SI_ClkIn(clk_out),
                     .HADDR(),
                     .HRDATA(),
@@ -52,8 +69,8 @@ module mfp_nexys4_ddr(
                     .EJ_TCK(tck),
                     .SI_ColdReset_N(JB[8]),
                     .EJ_DINT(1'b0),
-                    .IO_Switch(SW),
-                    .IO_PB({BTNU, BTND, BTNL, BTNC, BTNR}),
+                    .IO_Switch(debounced_SW),
+                    .IO_PB(debounced_PB[4:0]),
                     .IO_LED(LED),
                     .UART_RX(UART_TXD_IN),
                     

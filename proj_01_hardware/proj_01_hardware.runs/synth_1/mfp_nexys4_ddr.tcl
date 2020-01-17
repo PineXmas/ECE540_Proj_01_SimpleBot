@@ -17,7 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -45,6 +44,7 @@ read_verilog -library xil_defaultlib {
   N:/Projects/ECE540_Proj_01/proj_01_hardware/sources/core/RAMB4K_S8.v
   N:/Projects/ECE540_Proj_01/proj_01_hardware/sources/core/d_wsram_2k2way_xilinx.v
   N:/Projects/ECE540_Proj_01/proj_01_hardware/sources/core/dataram_2k2way_xilinx.v
+  N:/Projects/ECE540_Proj_01/proj_01_hardware/sources/hdl/debounce.v
   N:/Projects/ECE540_Proj_01/proj_01_hardware/sources/core/i_wsram_2k2way_xilinx.v
   N:/Projects/ECE540_Proj_01/proj_01_hardware/sources/core/m14k_alu_dsp_stub.v
   N:/Projects/ECE540_Proj_01/proj_01_hardware/sources/core/m14k_alu_shft_32bit.v
