@@ -55,14 +55,14 @@ module mfp_ahb_sevenseg(
     else if (HWRITE_d & HSEL_d) begin
       case (HADDR_d)
         // digit enables
-        2'h00: H_DIGIT_ENS <= HWDATA[7:0];
+        8'h00: H_DIGIT_ENS          <= HWDATA[7:0];
         
         // digit values
-        2'h04: H_DIGIT_REGS[63:32] <= HWDATA;
-        2'h08: H_DIGIT_REGS[31: 0] <= HWDATA;
+        8'h04: H_DIGIT_REGS[63:32]  <= HWDATA;
+        8'h08: H_DIGIT_REGS[31: 0]  <= HWDATA;
         
         // dec point enables
-        2'h0C: H_DEC_POINTS <= HWDATA[7:0];
+        8'h0C: H_DEC_POINTS         <= HWDATA[7:0];
       endcase
     end
   end

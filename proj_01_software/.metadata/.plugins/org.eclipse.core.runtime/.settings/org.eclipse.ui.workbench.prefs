@@ -1,3 +1,7 @@
+//org.eclipse.ui.commands/state/com.mips.ics.regedit.commands.BrowseResources/org.eclipse.ui.commands.radioState=BROWSE_HISTORY
+//org.eclipse.ui.commands/state/com.mips.ics.regedit.commands.FieldSort/org.eclipse.ui.commands.radioState=BIT
+//org.eclipse.ui.commands/state/com.mips.ics.regedit.commands.RegisterSort/org.eclipse.ui.commands.radioState=NUMBER
+//org.eclipse.ui.commands/state/com.mips.ics.regedit.commands.SortBrowseResources/org.eclipse.ui.commands.radioState=MOST_RECENT_VISIT
 UIActivities.org.eclipse.cdt.debug.cdigdbActivity=true
 eclipse.preferences.version=1
 editors=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<editors>\r\n<descriptor id\="org.eclipse.ui.browser.editorSupport" image\="$nl$/icons/obj16/internal_browser.gif" internal\="false" label\="Web Browser" launcher\="org.eclipse.ui.internal.browser.BrowserLauncher" openMode\="4" open_in_place\="false" plugin\="org.eclipse.ui.browser"/>\r\n<descriptor id\="com.mips.ics.debug.ui.loadTriggers" internal\="false" label\="Load Triggers Launcher" launcher\="com.img.codescape.triggers.ui.TriggerLoadLauncher" openMode\="4" open_in_place\="false" plugin\="com.img.codescape.triggers"/>\r\n<descriptor class\="org.eclipse.dltk.tcl.internal.ui.editor.TclEditor" id\="org.eclipse.dltk.tcl.ui.editor.TclEditor" image\="$nl$/icons/obj16/tcl_obj.gif" internal\="true" label\="Tcl Source Editor " openMode\="1" open_in_place\="false" plugin\="org.eclipse.dltk.tcl.ui"/>\r\n</editors>

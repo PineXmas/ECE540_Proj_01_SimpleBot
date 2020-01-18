@@ -1,8 +1,8 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2.1 (win64) Build 2288692 Thu Jul 26 18:24:02 MDT 2018
-| Date             : Thu Jan 16 21:06:26 2020
-| Host             : caplab06 running 64-bit major release  (build 9200)
+| Date             : Fri Jan 17 19:01:55 2020
+| Host             : caplab10 running 64-bit major release  (build 9200)
 | Command          : report_power -file mfp_nexys4_ddr_power_routed.rpt -pb mfp_nexys4_ddr_power_summary_routed.pb -rpx mfp_nexys4_ddr_power_routed.rpx
 | Design           : mfp_nexys4_ddr
 | Device           : xc7a100tcsg324-1
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.330        |
+| Total On-Chip Power (W)  | 0.337        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.228        |
+| Dynamic (W)              | 0.235        |
 | Device Static (W)        | 0.102        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 83.5         |
@@ -52,22 +52,22 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.016 |       10 |       --- |             --- |
-| Slice Logic              |     0.002 |    21131 |       --- |             --- |
-|   LUT as Logic           |     0.002 |     9537 |     63400 |           15.04 |
-|   Register               |    <0.001 |     8617 |    126800 |            6.80 |
+| Clocks                   |     0.017 |       10 |       --- |             --- |
+| Slice Logic              |     0.002 |    21182 |       --- |             --- |
+|   LUT as Logic           |     0.002 |     9566 |     63400 |           15.09 |
+|   Register               |    <0.001 |     8667 |    126800 |            6.84 |
 |   CARRY4                 |    <0.001 |      149 |     15850 |            0.94 |
 |   BUFG                   |    <0.001 |        1 |        32 |            3.13 |
-|   F7/F8 Muxes            |    <0.001 |      321 |     63400 |            0.51 |
+|   F7/F8 Muxes            |    <0.001 |      327 |     63400 |            0.52 |
 |   LUT as Shift Register  |    <0.001 |        9 |     19000 |            0.05 |
-|   Others                 |     0.000 |     1424 |       --- |             --- |
-|   LUT as Distributed RAM |     0.000 |        6 |     19000 |            0.03 |
-| Signals                  |     0.004 |    16915 |       --- |             --- |
+|   LUT as Distributed RAM |    <0.001 |        6 |     19000 |            0.03 |
+|   Others                 |     0.000 |     1422 |       --- |             --- |
+| Signals                  |     0.005 |    16994 |       --- |             --- |
 | Block RAM                |     0.094 |       78 |       135 |           57.78 |
 | MMCM                     |     0.106 |        1 |         6 |           16.67 |
-| I/O                      |     0.005 |       62 |       210 |           29.52 |
+| I/O                      |     0.012 |       62 |       210 |           29.52 |
 | Static Power             |     0.102 |          |           |                 |
-| Total                    |     0.330 |          |           |                 |
+| Total                    |     0.337 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -77,9 +77,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.127 |       0.109 |      0.018 |
+| Vccint    |       1.000 |     0.128 |       0.110 |      0.018 |
 | Vccaux    |       1.800 |     0.077 |       0.059 |      0.018 |
-| Vcco33    |       3.300 |     0.005 |       0.001 |      0.004 |
+| Vcco33    |       3.300 |     0.007 |       0.003 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -151,11 +151,11 @@ Table of Contents
 +----------------------------------------------------------------------------------------------+-----------+
 | Name                                                                                         | Power (W) |
 +----------------------------------------------------------------------------------------------+-----------+
-| mfp_nexys4_ddr                                                                               |     0.228 |
+| mfp_nexys4_ddr                                                                               |     0.235 |
 |   clk_wiz_0                                                                                  |     0.106 |
 |     inst                                                                                     |     0.106 |
 |   debouncer                                                                                  |    <0.001 |
-|   mfp_sys                                                                                    |     0.116 |
+|   mfp_sys                                                                                    |     0.117 |
 |     mfp_ahb_withloader                                                                       |     0.086 |
 |       mfp_ahb                                                                                |     0.085 |
 |         mfp_ahb_b_ram                                                                        |     0.002 |
@@ -173,7 +173,6 @@ Table of Contents
 |           display_timer                                                                      |    <0.001 |
 |             counter16                                                                        |    <0.001 |
 |             counterSel                                                                       |    <0.001 |
-|             mux8_7segen                                                                      |    <0.001 |
 |       mfp_srec_parser                                                                        |    <0.001 |
 |       mfp_srec_parser_to_ahb_lite_bridge                                                     |    <0.001 |
 |       mfp_uart_receiver                                                                      |    <0.001 |
