@@ -1,0 +1,6 @@
+*.o
+/program.dis
+/program.elf
+/program.map
+/program.rec
+/program.txt
