@@ -26,6 +26,9 @@
 		$s5 = current compass value
 		$s7 = current motion value
 		$s6 = final contents to display onto 7-Seg display
+		$t6 = compass adjust
+		$t7 = compass delay
+		$t5 = compass countdown
 */
 
 // --------------------------------------------------
@@ -33,9 +36,9 @@
 // --------------------------------------------------
 
 // time delay for 1Hz, 5Hz and 10Hz
-d1 = 100000
-d5 = 20000
-d10 = 10000
+d1 = 1000000
+d5 = 200000
+d10 = 100000
 
 // --------------------------------------------------
 // TEXT
@@ -46,19 +49,15 @@ d10 = 10000
 	main:
 
 	# init setup
-	move	$s0, $0										# previous motion
-	move	$s1, $0										# current motion
-	li		$s3, -1										# reset index
-	move	$s4, $0										# reset delay time
-	move	$s5, $0										# reset compass value = 0
-	move	$s6, $0										# contents to display: 0.000
-	la		$t0, compass_delay				# compass_delay = 0
-	li		$t1, 0xF0F0F0F0
-	sw		$t1, 0($t0)
-	la		$t0, compass_adjust				# compass_adjust = 0
-	sw		$0, 0($t0)
-	la		$t0, compass_countdown		# compass_countdown = 0
-	sw		$0, 0($t0)
+	move	$s0, $0		# previous motion
+	move	$s1, $0		# current motion
+	li		$s3, -1		# reset index
+	move	$s4, $0		# reset delay time
+	move	$s5, $0		# reset compass value = 0
+	li		$t6, 0		# reset compass adjust = 0
+	li		$t7, 0		# reset compass delay = 0
+	li		$t5, 0		# reset compass countdown = 0
+	move	$s6, $0		# contents to display: 0.000
 
 	begin_loop:
 
@@ -83,19 +82,15 @@ d10 = 10000
 	li		$t0, 5
 	bne		$t0, $s1, motion_sequence_2					# check if motion 1 by compare with 5
 	la		$s2, motion_1												# s2 = base address of motion 1 (FORWARD)
-	la		$t0, compass_adjust									# compass_adjust = 0
-	sw		$0, 0($t0)
-	la		$t0, compass_delay									# compass_delay = 0
-	sw		$0, 0($t0)
+	li		$t6, 0															# compass_adjust = 0
+	li		$t7, 0															# compass_delay = 0
 	j			end_decide_sequence
 	motion_sequence_2:
 	li		$t0, 24
 	bne		$t0, $s1, motion_sequence_3					# check if motion 2 by compare with 24
 	la		$s2, motion_2												# s2 = base address of motion 2 (REVERSE)
-	la		$t0, compass_adjust									# compass_adjust = 0
-	sw		$0, 0($t0)
-	la		$t0, compass_delay									# compass_delay = 0
-	sw		$0, 0($t0)
+	li		$t6, 0															# compass_adjust = 0
+	li		$t7, 0															# compass_delay = 0
 	j			end_decide_sequence
 	motion_sequence_3:
 	li		$t0, 1
@@ -104,23 +99,15 @@ d10 = 10000
 	bne		$t0, $s1, motion_sequence_4					# check if motion 2 by compare with 16
 		motion_sequence_3_sure:
 	la		$s2, motion_3												# s2 = base address of motion 3 (LEFT 1X)
-	la		$t0, compass_adjust									# compass_adjust = 1
-	li		$t1, 1
-	sw		$t1, 0($t0)
-	la		$t0, compass_delay									# compass_delay = d5 (5Hz)
-	li		$t1, d5
-	sw		$t1, 0($t0)
+	li		$t6, 1															# compass_adjust = 1
+	li		$t7, d5															# compass_delay = d5 (5Hz)
 	j			end_decide_sequence
 	motion_sequence_4:
 	li		$t0, 17
 	bne		$t0, $s1, motion_sequence_5					# check if motion 2 by compare with 17
 	la		$s2, motion_4												# s2 = base address of motion 4 (LEFT 2X)
-	la		$t0, compass_adjust									# compass_adjust = 1
-	li		$t1, 1
-	sw		$t1, 0($t0)
-	la		$t0, compass_delay									# compass_delay = d10 (10Hz)
-	li		$t1, d10
-	sw		$t1, 0($t0)
+	li		$t6, 1															# compass_adjust = 1
+	li		$t7, d10														# compass_delay = d10 (10Hz)
 	j			end_decide_sequence
 	motion_sequence_5:
 	li		$t0, 4
@@ -129,40 +116,27 @@ d10 = 10000
 	bne		$t0, $s1, motion_sequence_6					# check if motion 2 by compare with 8
 		motion_sequence_5_sure:
 	la		$s2, motion_5												# s2 = base address of motion 5 (RIGHT 1X)
-	la		$t0, compass_adjust									# compass_adjust = -1
-	li		$t1, -1
-	sw		$t1, 0($t0)
-	la		$t0, compass_delay									# compass_delay = d5 (5Hz)
-	li		$t1, d5
-	sw		$t1, 0($t0)
+	li		$t6, -1															# compass_adjust = -1
+	li		$t7, d5															# compass_delay = d5 (5Hz)
 	j			end_decide_sequence
 	motion_sequence_6:
 	li		$t0, 12
 	bne		$t0, $s1, motion_sequence_0					# check if motion 2 by compare with 12
 	la		$s2, motion_6												# s2 = base address of motion 6 (RIGHT 2X)
-	la		$t0, compass_adjust									# compass_adjust = -1
-	li		$t1, -1
-	sw		$t1, 0($t0)
-	la		$t0, compass_delay									# compass_delay = d10 (10Hz)
-	li		$t1, d10
-	sw		$t1, 0($t0)
+	li		$t6, -1															# compass_adjust = -1
+	li		$t7, d10														# compass_delay = d10 (10Hz)
 	j			end_decide_sequence
 	motion_sequence_0:
 	la		$s2, motion_0												# s2 = base address of motion 0 (STOP)
-	la		$t0, compass_adjust									# compass_adjust = 0
-	sw		$0, 0($t0)
-	la		$t0, compass_delay									# compass_delay = 0
-	sw		$0, 0($t0)
+	li		$t6, 0															# compass_adjust = 0
+	li		$t7, 0															# compass_delay = 0
 	end_decide_sequence:
 
 	# reset index if current motion is different from previous motion
 	beq		$s0, $s1, animate_motion_sequence		# reset if previous and current motions are different
 	li		$s3, -1															# reset index
 	move	$s4, $0															# reset countdown for motion
-	la		$t0, compass_delay									# reset countdown for compass
-	lw		$t0, 0($t0)
-	la		$t1, compass_countdown
-	sw		$t0, 0($t1)
+	move	$t5, $t7														# reset countdown for compass
 
 // ==================================================
 // Animate motion sequence
@@ -205,19 +179,12 @@ d10 = 10000
 
 	animate_compass:
 
-	# check compass countdown: if run out of delay time
-	la		$t0, compass_countdown
-	lw		$t0, 0($t0)
-	bgt		$t0, $0, count_down_compass_delay		# jump to compass count down
-	la		$t0, compass_delay									# reset countdown for compass
-	lw		$t0, 0($t0)
-	la		$t1, compass_countdown
-	sw		$t0, 0($t1)
+	# check delay time
+	bgt		$t5, $0, count_down_compass_delay		# jump to compass count down
+	move	$t5, $t7														# reset countdown for compass
 
 	# adjust compass value: +1/-1 or 0 based on the t6
-	la		$t0, compass_adjust
-	lw		$t0, 0($t0)
-	add		$s5, $s5, $t0
+	add		$s5, $s5, $t6
 
 	# check compass value out of bound
 	blt		$s5, $0, compass_less_than_0				# check less than 0
@@ -234,10 +201,7 @@ d10 = 10000
 	j display
 
 	count_down_compass_delay:
-	la		$t0, compass_countdown							# count down by -1
-	lw		$t1, 0($t0)
-	addi	$t1, $t1, -1
-	sw		$t1, 0($t0)
+	addi	$t5, $t5, -1
 
 // ==================================================
 // Display onto the 7-Seq
@@ -245,25 +209,17 @@ d10 = 10000
 
 	display:
 
-	# split compass values to 3 digits & write to 24 least bits in s6
-	li		$t2, 10											# t2 = 10
-	move	$s6, $0											# s6 = 0
-	li		$t3, 3											# t3 = 3
-	move	$t4, $0											# t4 = 0, used for looping 3 times
-	move	$t1, $s5										# t1 = s5
-	begin_split:
-	rem		$t0, $t1, $t2								# t0 = remainder of division by 10
-	div		$t1, $t1, $t2								# t1 = quotient of division by 10
-	sll		$t0, $t0, 24								# move remainder to 8 most bits
-	or		$s6, $s6, $t0								# write rem[8 most bits] to s6[8 most bits]
-	srl		$s6, $s6, 8									# shift right s6 8 bits, to save 8 most bits for the next remainder
-	addi	$t4, $t4, 1									# t4++
-	bne		$t4, $t3, begin_split				# repeat 3 times (t3 == 3)
-	end_split:
+	# DEBUG: uncomment when not debug
+	move	$s5, $s1														# compass value = motion number, for now
 
 	# write motion value (8 least sig. bits) in s7 to the most sig. bits in s6
 	sll		$t0, $s7, 24
-	or		$s6, $s6, $t0								# the 24 least bits are now 0, which is ready for overwriting the compass value onto
+	move	$s6, $t0										# the 24 least bits are now 0, which is ready for overwriting the compass value onto
+
+	# write compass value (24 least sig. bits) in s5 to the least sig. bits in s6
+	li		$t1, 0x00FFFFFF							# t1 = 0x00FFFFFF, mask used for next step
+	and		$t0, $s5, $t1								# t0 = zero outs the 8 most sig. bits in s5
+	or		$s6, $s6, $t0								# s6 = 8 most bits (s6) + 24 least bits (s5)
 
 	# update contents to the 7-Seg Display
 	li   	$12, 0xbf700008							# $12 = address of Digits 3:0 (0xbf700008)
@@ -284,6 +240,3 @@ d10 = 10000
 	motion_4: .word 17, d10, 16, d10, 21, d10, 20, d10, 19, d10, 18, d10, 64
 	motion_5: .word 17, d5 , 18, d5 , 19, d5 , 20, d5 , 21, d5 , 16, d5 , 64
 	motion_6: .word 17, d10, 18, d10, 19, d10, 20, d10, 21, d10, 16, d10, 64
-	compass_countdown: .word 0
-	compass_delay: .word 0
-	compass_adjust: .word 0
