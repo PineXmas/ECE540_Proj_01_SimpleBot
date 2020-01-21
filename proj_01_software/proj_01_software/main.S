@@ -99,9 +99,13 @@ d10 = 10000
 	j			end_decide_sequence
 	motion_sequence_3:
 	li		$t0, 1
-	beq		$t0, $s1, motion_sequence_3_sure		# check if motion 2 by compare with 1
+	beq		$t0, $s1, motion_sequence_3_sure		# check if motion 3 by compare with 1
+	li		$t0, 21
+	beq		$t0, $s1, motion_sequence_3_sure		# check if motion 3 by compare with 21
+	li		$t0, 25
+	beq		$t0, $s1, motion_sequence_3_sure		# check if motion 3 by compare with 25
 	li		$t0, 16
-	bne		$t0, $s1, motion_sequence_4					# check if motion 2 by compare with 16
+	bne		$t0, $s1, motion_sequence_4					# check if motion 3 by compare with 16
 		motion_sequence_3_sure:
 	la		$s2, motion_3												# s2 = base address of motion 3 (LEFT 1X)
 	la		$t0, compass_adjust									# compass_adjust = 1
@@ -113,7 +117,7 @@ d10 = 10000
 	j			end_decide_sequence
 	motion_sequence_4:
 	li		$t0, 17
-	bne		$t0, $s1, motion_sequence_5					# check if motion 2 by compare with 17
+	bne		$t0, $s1, motion_sequence_5					# check if motion 4 by compare with 17
 	la		$s2, motion_4												# s2 = base address of motion 4 (LEFT 2X)
 	la		$t0, compass_adjust									# compass_adjust = 1
 	li		$t1, 1
@@ -124,9 +128,13 @@ d10 = 10000
 	j			end_decide_sequence
 	motion_sequence_5:
 	li		$t0, 4
-	beq		$t0, $s1, motion_sequence_5_sure		# check if motion 2 by compare with 4
+	beq		$t0, $s1, motion_sequence_5_sure		# check if motion 5 by compare with 4
+	li		$t0, 13
+	beq		$t0, $s1, motion_sequence_5_sure		# check if motion 5 by compare with 13
+	li		$t0, 28
+	beq		$t0, $s1, motion_sequence_5_sure		# check if motion 5 by compare with 28
 	li		$t0, 8
-	bne		$t0, $s1, motion_sequence_6					# check if motion 2 by compare with 8
+	bne		$t0, $s1, motion_sequence_6					# check if motion 5 by compare with 8
 		motion_sequence_5_sure:
 	la		$s2, motion_5												# s2 = base address of motion 5 (RIGHT 1X)
 	la		$t0, compass_adjust									# compass_adjust = -1
@@ -138,7 +146,7 @@ d10 = 10000
 	j			end_decide_sequence
 	motion_sequence_6:
 	li		$t0, 12
-	bne		$t0, $s1, motion_sequence_0					# check if motion 2 by compare with 12
+	bne		$t0, $s1, motion_sequence_0					# check if motion 6 by compare with 12
 	la		$s2, motion_6												# s2 = base address of motion 6 (RIGHT 2X)
 	la		$t0, compass_adjust									# compass_adjust = -1
 	li		$t1, -1
